@@ -1,0 +1,164 @@
+.dashboard-container {
+    display: grid;
+    height: 100vh;
+    grid-template-areas:
+      "games games games games"
+      "contract contract status status"
+      "contract contract status status"
+      "contract contract revenue revenue";
+    
+  }
+
+  .db-contract-container {
+    grid-area: contract;
+    background-color: transparent;
+  }
+  
+  .db-games-container {
+    grid-area: games;
+    background-color: transparent;
+  }
+  
+  .contract-status {
+    grid-area: status;
+  }
+  
+  .revenue {
+    grid-area: revenue;
+  }
+  
+
+  .dashboard-container {
+    background-color: #252525;
+  }
+
+  .db-contract-container {
+    margin: 50px 30px;
+    height: 280px;
+    width: 800px;
+  }
+  .db-games-container {
+    max-height: 150px;
+    max-width: 98%;
+    margin: 0px 30px;
+  }
+
+  .img-dashboard-page {
+    width: 50px;
+    height: 50px;
+  }
+
+  .contract-status {
+    background-color: #505050;
+    border-radius: 10px;
+    height: 200px;
+    width: 400px;
+    margin: 80px 10px 0px 10px;
+    opacity: 90%;
+    padding: 0px 30px;
+  }
+
+  .revenue {
+    background-color: #505050;
+    border-radius: 10px;
+    margin: -100px 10px 20px 10px;
+    height: 60px;
+    width: 400px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
+
+  .db-games-container > h6 {
+    background: #252525;
+    color: #fff;
+    padding: 10px 5px;
+    font-size: 18px;
+    margin: 0px;
+    opacity: 50%;
+  }
+  
+  .db-contract-container > h6 {
+    background: #252525;
+    color: #fff;
+    padding: 0px 5px 10px 5px;
+    font-size: 18px;
+    margin: 0px;
+    opacity: 50%;
+  }
+  .revenue > h6 {
+    color: #d9d9d9;
+    margin: 10px;
+    font-size: 20px;
+  }
+  .revenue > p {
+    color: #d9d9d9;
+    margin: 10px;
+    font-size: 24px;
+  }
+  
+
+/*game and contract table*/
+.tbd-wrapper {
+    /* position: relative; */
+    max-height: 100%;
+    overflow-y: scroll; 
+    border-radius: 10px;
+  }
+  
+  .tbd {
+      color: #000;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 20px;
+  }
+  
+  .tbd-body {
+      background-color: #504e4e;
+      color: #fff ;
+      align-items: center;
+  }
+  
+  .tbd-body > tr {
+    height: 64px;
+    border-bottom: #888888 1px solid;
+  }
+  
+  .tbd-body > tr:hover {
+    border: #0085ff 2px solid;
+    border-radius: 10px;
+  }
+  
+  tr:last-child {
+    border: none;
+  }
+  
+  .tbd-head > tr > th {
+    padding: 10px 20px;
+    color: #fff;
+    background: #505050;
+    opacity: 80%;
+  }
+  .tbd-head > tr > th:first-child {
+    border-radius: 0 0 0 10px ;
+  }
+  .tbd-head > tr > th:last-child {
+    border-radius:0 10px 10px 0;
+  }
+  .tbd-body > tr > td  {
+    color: #fff ;
+    padding: 20px;
+    background-color: #505050;
+  }
+
+  .tbd-wrapper::-webkit-scrollbar{
+    display: none;
+  }
+
+/* status coloring */
+  .pending {color: #D6A700;}
+  .active {color: #369FFF;}
+  .completed {color: #52D800;}
+  .overdue {color: #d9d9d9;}
+  .canceled {color: #BE0000;}
+

@@ -31,13 +31,10 @@ export class NavbarAdmin extends Component {
           <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!this.state.collapsed} navbar>
             <ul className="navbar-nav flex-grow">
               <NavItem>
-                <NavLink tag={Link} className="text-light" to="">Dashboard</NavLink>
+                <NavLink tag={Link} className="text-light" to="/dashboard">Dashboard</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="text-light" to="/games">Games</NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink tag={Link} className="text-light" to="">User</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink tag={Link} className="text-light" to="/contracts">Contracts</NavLink>

@@ -18,7 +18,7 @@ const HeroSection = () => {
             <Link to="/search?platform=Nintendo Switch"><button className="link-btn-item">Nintendo Switch</button></Link>
             <Link to="/search?sort=popularity"><button className="link-btn-item">Most Popular</button></Link>
             <Link to="/search?sort=releaseDate"><button className="link-btn-item">New Release</button></Link>
-            <Link to="/search?sort=-ESRBRating"><button className="link-btn-item">ESRBRating</button></Link>
+            <Link to="/search?sort=-ESRBRating"><button className="link-btn-item">High Rating</button></Link>
         </div>
         <div className='intro'>
             <h3>Dịch vụ cho thuê game | GameRental</h3>

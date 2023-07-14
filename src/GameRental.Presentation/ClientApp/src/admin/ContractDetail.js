@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './ContractDetail.css';
 import { Link, useParams } from 'react-router-dom';
+import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
 
 function ContractDetail() {
   const [contractData, setContractData] = useState(null);
   const {contractId} = useParams();
+  const navigate = useNavigate();
   const [gameTitles, setGameTitles] = useState({})
   useEffect(() => {
     // Fetch game data for the specific game using the contractId prop
@@ -12,6 +15,27 @@ function ContractDetail() {
       .then(response => response.json())
       .then(data => setContractData(data));
   }, [contractId]);
+  const handleEdit = (contractId) => {
+    navigate(`/contracts/edit/${contractId}`);
+  }
+  const handleDelete = (contractId) => {
+    swal({
+      title: "Bạn có chắc muốn xóa hợp đồng này?",
+      text: "Khi xóa dữ liệu sẽ không được khôi phục!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        fetch(`/api/contract/delete/${contractId}`, { method: 'DELETE' })
+          .then(() => {
+            navigate('/contracts');
+          });
+      }
+    });
+  }
+  
 
   useEffect(() => {
     fetchGameTitles();
@@ -93,8 +117,8 @@ function ContractDetail() {
                     <label className='detail-contract-label'>{contractData.status}</label>
                 </div> 
                 <div className='btn-area'>
-                  <button className='button btn-delete'>Xóa</button>
-                  <Link to='/contracts'><button className='button btn-edit'>Sửa</button></Link>
+                  <button className='button btn-delete' onClick={() => handleDelete(contractId)}>Xóa</button>
+                  <button className='button btn-edit' onClick={() => handleEdit(contractId)}>Sửa</button>
                 </div>          
             </div>
             </div>

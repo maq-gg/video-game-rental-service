@@ -12,6 +12,7 @@ import ContractDetail from "./admin/ContractDetail";
 import EditGame from "./admin/EditGame";
 import GameDetail from "./admin/GameDetail";
 import GameInfo from "./user/GameInfo";
+import Dashboard from "./admin/Dashboard";
 
 const AppRoutes = [
   {
@@ -69,8 +70,11 @@ const AppRoutes = [
   {
     path: 'info/:gameId',
     element: <GameInfo />
+  },
+  {
+    path: 'dashboard',
+    element: <Dashboard/>
   }
-
 ];
 
 export default AppRoutes;

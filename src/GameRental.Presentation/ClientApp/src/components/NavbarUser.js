@@ -33,6 +33,9 @@ export class NavbarUser extends Component {
               <NavItem>
                 <NavLink tag={Link} className="text-light" to="/explore">Explore</NavLink>
               </NavItem>
+              <NavItem>
+                <NavLink tag={Link} className="text-light" to="/search">Search</NavLink>
+              </NavItem>
             </ul>
           </Collapse>
         </Navbar>
