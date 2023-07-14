@@ -22,4 +22,13 @@ public class SieveCustomFilterMethods : ISieveCustomFilterMethods
 
         return result;
     }
+
+    public IQueryable<Game> Explore(IQueryable<Game> source, string op, string[] values)
+    {
+        var result = source.Where(game =>
+            game.Explore.Count != 0 && game.Explore.Any(explore => 
+                values.Any(value => value.ToLower() == explore.ToLower())));
+
+        return result;
+    }
 }
