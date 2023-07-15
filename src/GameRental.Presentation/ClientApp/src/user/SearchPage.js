@@ -160,30 +160,33 @@ export default function SearchPage() {
           <label for='ch-g'>Xem thêm</label>
         </div>
         <div className='filter-tag'>
-          <h6>Thẻ</h6>
+          <h6>Explore</h6>
           <input id='ch-t' type='checkbox'/>
             <ul className='filter-item'>
-            <li onClick={e => showChip("Action")}>Action</li>
-            <li onClick={e => showChip("Adventure")}>Adventure</li>
-            <li onClick={e => showChip("RPG")}>RPG</li>
+            <li onClick={e => showChip("explore","Featured")}>Featured</li>
+            <li onClick={e => showChip("explore","Coming soon")}>Coming soon</li>
+            <li onClick={e => showChip("explore","New releases")}>New releases</li>
             </ul>
-            <ul className='more-t filter-item'>
+            {/* <ul className='more-t filter-item'>
             <li onClick={e => showChip("Racing")}>Racing</li>
             <li onClick={e => showChip("Sports")}>Sports</li>
             <li onClick={e => showChip("Indie")}>Indie</li>
             <label for='ch-t'>Ẩn</label>
           </ul>
-          <label for='ch-t'>Xem thêm</label>
+          <label for='ch-t'>Xem thêm</label> */}
         </div>
         <div className='filter-rating'>
-          <h6>Chia loại (Rating)</h6>
+          <h6>ESRB Rating</h6>
             <input id='ch-r' type='checkbox'/>
             <ul className='filter-item'>
-              <li onClick={e => showChip("Trẻ vị thành niên")}>Trẻ vị thành niên</li>
-              <li onClick={e => showChip("Mọi người")}>Mọi người</li>
-              <li onClick={e => showChip("18+")}>18+</li>
+              <li onClick={e => showChip("ESRBRating","EC")}>EC</li>
+              <li onClick={e => showChip("ESRBRating","E")}>E</li>
+              <li onClick={e => showChip("ESRBRating","E10+")}>E10+</li>
             </ul>
             <ul className='more-r filter-item'>
+            <li onClick={e => showChip("ESRBRating","M17+")}>M17+</li>
+            <li onClick={e => showChip("ESRBRating","M")}>M</li>
+            <li onClick={e => showChip("ESRBRating","AO")}>AO</li>
             
             <label for='ch-r'>Ẩn</label>
           </ul>
@@ -193,14 +196,15 @@ export default function SearchPage() {
           <h6>Nhà phát hành</h6>
             <input id='ch-p' type='checkbox'/>
             <ul className='filter-item'>
-              <li onClick={e => showChip("publisher","Nis Ameria")}>Nis Ameria</li>
-              <li onClick={e => showChip("publisher","Sony")}>Sony</li>
-              <li onClick={e => showChip("publisher","Atari")}>Atari</li>
+              <li onClick={e => showChip("publisher","Nintendo")}>Nintendo</li>
+              <li onClick={e => showChip("publisher","Blizzard Entertainment")}>Blizzard Entertainment</li>
+              <li onClick={e => showChip("publisher","Bethesda")}>Bethesda</li>
             </ul>
             <ul className='more-p filter-item'>
               <li onClick={e => showChip("publisher","Ubisoft")}>Ubisoft</li>
               <li onClick={e => showChip("publisher","Capcom")}>Capcom</li>
               <li onClick={e => showChip("publisher","Namco")}>Namco</li>
+              <li onClick={e => showChip("publisher","Warner Bros. Games")}>Warner Bros. Games</li>
               <label for='ch-p'>Ẩn</label>
             </ul>
             <label for='ch-p'>Xem thêm</label>
@@ -222,11 +226,11 @@ export default function SearchPage() {
             <div className='dropdown-item'onClick={e => {setIsAtiveS(!isActiveS); sortHandle("popularity")}}>
                 {content[0]}
             </div>
-            <div className='dropdown-item' onClick={e => {setIsAtiveS(!isActiveS); sortHandle("releaseDate")}}>
+            <div className='dropdown-item' onClick={e => {setIsAtiveS(!isActiveS); sortHandle("-releaseDate")}}>
                 {content[1]}
                 
             </div>
-            <div className='dropdown-item'onClick={e => {setIsAtiveS(!isActiveS); sortHandle("-ESRBRating")}}>
+            <div className='dropdown-item'onClick={e => {setIsAtiveS(!isActiveS); sortHandle("releaseDate")}}>
                 {content[2]}
             </div>
         </div>}
@@ -250,7 +254,7 @@ export default function SearchPage() {
         <div className='list-wrap'>
           <div className='range-wrap'>
           <h6 className='filter-description'>#kết quả cho</h6>
-            <DropdownSoft className='dropdown-soft' Type={"range"} Title={"Sắp xếp"} content={['Phổ biến', 'Ngày phát hành', 'ESRBRating']} />
+            <DropdownSoft className='dropdown-soft' Type={"range"} Title={"Sắp xếp"} content={['Phổ biến', 'Mới nhất', 'Cũ nhất']} />
           </div>
           <div className='cards-wrap'>
             {searchResults.map(game => (
