@@ -3,57 +3,44 @@
     height: 100vh;
     grid-template-areas:
       "games games games games"
-      "contract contract status status"
-      "contract contract status status"
-      "contract contract revenue revenue";
-    
+      "games games games games"
+      "contract contract contract status"
+      "contract contract contract revenue";
+    background-color: #252525;
   }
-
+/*set each area grid*/
   .db-contract-container {
     grid-area: contract;
     background-color: transparent;
   }
-  
   .db-games-container {
     grid-area: games;
     background-color: transparent;
   }
-  
   .contract-status {
     grid-area: status;
   }
-  
   .revenue {
     grid-area: revenue;
   }
-  
-
-  .dashboard-container {
-    background-color: #252525;
-  }
-
+/*each container*/
   .db-contract-container {
-    margin: 50px 30px;
-    height: 280px;
-    width: 800px;
+    margin: 0 1%;
+    max-height: 300px;
   }
   .db-games-container {
-    max-height: 150px;
-    max-width: 98%;
-    margin: 0px 30px;
+    max-height: 250px;
+    margin: 0 1%;
   }
-
   .img-dashboard-page {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
   }
-
   .contract-status {
     background-color: #505050;
     border-radius: 10px;
     height: 200px;
-    width: 400px;
-    margin: 80px 10px 0px 10px;
+    margin: 6% 2% 0 2%;
     opacity: 90%;
     padding: 0px 30px;
   }
@@ -61,9 +48,8 @@
   .revenue {
     background-color: #505050;
     border-radius: 10px;
-    margin: -100px 10px 20px 10px;
-    height: 60px;
-    width: 400px;
+    margin: 0 2%;
+    height: 50px;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -72,8 +58,8 @@
   .db-games-container > h6 {
     background: #252525;
     color: #fff;
-    padding: 10px 5px;
-    font-size: 18px;
+    padding: 5px;
+    font-size: 16px;
     margin: 0px;
     opacity: 50%;
   }
@@ -81,8 +67,8 @@
   .db-contract-container > h6 {
     background: #252525;
     color: #fff;
-    padding: 0px 5px 10px 5px;
-    font-size: 18px;
+    padding: 5px;
+    font-size: 16px;
     margin: 0px;
     opacity: 50%;
   }

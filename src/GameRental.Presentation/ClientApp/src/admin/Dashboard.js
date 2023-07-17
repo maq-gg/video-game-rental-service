@@ -59,7 +59,7 @@ function Dashboard() {
         }
       }
   
-      setContracts(allContracts.slice(0, 10));
+      setContracts(allContracts);
       setLoading(false);
     } catch (error) {
       console.error('An error occurred while fetching data:', error);
@@ -152,10 +152,10 @@ const totalRevenue = contracts.reduce((sum, contract) => {
         <h6>Popular Games</h6>
         {gameContents}
       </div>
-      <div className='db-contract-container'>
-        <h6>Recent Contracts</h6>
-        {contractContents}
-      </div>
+        <div className='db-contract-container'>
+          <h6>Recent Contracts</h6>
+          {contractContents}
+        </div>
       {/* Display the count of contracts with different statuses */}
       <div className='contract-status'>
         <h6></h6>

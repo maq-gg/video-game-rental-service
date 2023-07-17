@@ -160,7 +160,7 @@ function RentGame() {
               <div className='game-info'>
                   <img className='game-img' alt="Game" src={gameData.boxArt}/>
                   <div className='game-text'>
-                    <h5 className='game-title'>{gameData.title}</h5>
+                    <h5 className='rentgame-title'>{gameData.title}</h5>
                     <h5 className='genre'>Thể loại: {gameData.genre ? gameData.genre.join(', ') : ''}</h5>
                   </div>
               </div>
