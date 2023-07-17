@@ -77,7 +77,8 @@ export class NavMenu extends Component {
     const { isAdmin } = this.state;
     return (
       <header className='navmenu-container'>
-        <Link to="/"><button className='switch-btn' onClick={this.toggleRole}>
+        <Link to={isAdmin ? "/" : "/dashboard" }>
+          <button className='switch-btn' onClick={this.toggleRole}>
           {isAdmin ? 'Switch to User' : 'Switch to Admin'}
         </button>
         </Link>

@@ -132,11 +132,12 @@ h4 {
     margin-bottom: 0px;
 }
 
-.game-title {
+.rentgame-title {
     color: #fff;
     padding: 50px 10px 10px 10px;
     background: #505050;
     margin-bottom: 0px;
+    max-width: 250px;
 }
 
 .genre {
