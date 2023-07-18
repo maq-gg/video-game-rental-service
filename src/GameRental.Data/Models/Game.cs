@@ -30,7 +30,7 @@ namespace GameRental.Data.Models
         
         public string? Description { get; set; }
 
-        [Sieve(CanSort = true)]
+        [Sieve(CanFilter = true)]
         public string ESRBRating { get; set; } = null!;
 
         public string BoxArt { get; set; } = null!;
