@@ -166,5 +166,10 @@ namespace GameRental.Logic.Services
         {
             await _contractRepository.CancelAsync(id);
         }
+
+        public async Task Activate(string id)
+        {
+            await _contractRepository.ActivateAsync(id);
+        }
     }
 }
