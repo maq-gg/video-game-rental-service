@@ -242,4 +242,40 @@ public class ContractController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
+
+    [HttpGet("contract/activate/{id}")]
+    public async Task<IActionResult> Activate(string id)
+    {
+        try
+        {
+            _logger.LogInformation("Received GET request to /contract/complete/{Id} endpoint", id);
+            
+            // Get contract to mark as Active 
+            var contractToMark = await _contractService.Get(id);
+
+            // Return if not found contract with id
+            if (contractToMark == null)
+            {
+                _logger.LogInformation("Contract with id: {Id} not found", id);
+
+                return NotFound();
+            }
+
+            // Do nothing if Contract is already Activated
+            if (contractToMark.Status == "Active")
+                return NoContent();
+
+            // Activate contract
+            await _contractService.Activate(id);
+
+            return NoContent();
+        }
+        catch(Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occured while processing GET request to /contract/cancel/{Id} endpoint", id);
+            // ...
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
 }
