@@ -145,16 +145,26 @@ namespace GameRental.Logic.Services
 
             if (startDateDiff <= 0)
             {
-                contract.Status = "Pending";
+                if ((contract.Status != "Active" && startDateDiff == 0) || contract.Status != "Canceled")
+                {
+                    contract.Status = "Pending";
+                }
             }
             else if (startDateDiff > 0 && endDateDiff <= 0)
             {
-                contract.Status = "Canceled";
+                if (contract.Status != "Active")
+                {
+                    contract.Status = "Canceled";
+                }
             }
             else if (endDateDiff > 0)
             {
-                contract.Status = "Overdue";
+                if (contract.Status != "Completed")
+                {
+                    contract.Status = "Overdue";
+                }
             }
+
         }
 
         public async Task Complete(string id)

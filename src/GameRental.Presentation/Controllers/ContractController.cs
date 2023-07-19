@@ -233,7 +233,7 @@ public class ContractController : ControllerBase
             }
 
             // Contract can only be Canceled if its status is Pending or Active
-            if (contractToMark.Status != "Pending" || contractToMark.Status != "Active")
+            if (contractToMark.Status != "Pending" && contractToMark.Status != "Active")
                 return NoContent();
 
             if (contractToMark.Status == "Completed" || contractToMark.Status == "Canceled")
