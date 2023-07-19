@@ -143,13 +143,13 @@ namespace GameRental.Logic.Services
             int startDateDiff = currentDate.CompareTo(contract.StartDate);
             int endDateDiff = currentDate.CompareTo(contract.EndDate);
 
-            if (startDateDiff < 0)
+            if (startDateDiff <= 0)
             {
                 contract.Status = "Pending";
             }
-            else if (startDateDiff >= 0 && endDateDiff <= 0)
+            else if (startDateDiff > 0 && endDateDiff <= 0)
             {
-                contract.Status = "Active";
+                contract.Status = "Canceled";
             }
             else if (endDateDiff > 0)
             {
