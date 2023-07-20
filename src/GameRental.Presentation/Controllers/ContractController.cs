@@ -197,7 +197,7 @@ public class ContractController : ControllerBase
                 return NotFound();
             }
             // Contract can only be Completed if its status is "Active"
-            if (contractToMark.Status != "Active")
+            if (contractToMark.Status != "Active" && contractToMark.Status != "Overdue")
                 return NoContent();
 
             if (contractToMark.Status == "Completed" || contractToMark.Status == "Canceled")
