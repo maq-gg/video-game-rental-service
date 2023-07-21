@@ -41,6 +41,7 @@ function Contracts() {
   useEffect(() => {
     fetchGameBoxArt();
   }, [searchResults]);
+  
 
   const handleEdit = (contractId) => {
     navigate(`/contracts/edit/${contractId}`);
@@ -70,7 +71,7 @@ function Contracts() {
         }
       });
   }
-
+  
   async function fetchSearchResults(query, soft) {
     try {
       const response = await fetch(`/api/contracts/search?searchTerm=${query}&sorts=${soft}&page=${currentPage}&pageSize=10`);
@@ -115,6 +116,24 @@ function Contracts() {
     }
     setGameBoxArt(newGameBoxArt);
   }
+  const handleStatusChange = async (contractId, newStatus) => {
+    console.log(newStatus);
+    const response = await fetch(`api/contract/${newStatus}/${contractId}`, {
+      method: 'GET',
+    });
+    if (response.ok) {
+      // Update contract status in contracts state
+      setContracts(contracts => contracts.map(contract => {
+        if (contract.id === contractId) {
+          return { ...contract, status: newStatus };
+        }
+        return contract;
+      }));
+    } else {
+      // Handle failed status update
+    }
+  };
+  
   
   function renderContractsTable(contracts) {
     return (
@@ -129,6 +148,7 @@ function Contracts() {
                 <th>Ngày kết thúc</th>
                 <th>Tình trạng</th>
                 <th>Thành tiền</th>
+                <th></th>
               </tr>
             </thead>
             {searchResults.map(contract => {
@@ -145,6 +165,19 @@ function Contracts() {
                     <td>{formattedEndDate}</td>
                     <td>{contract.status}</td>
                     <td>{contract.totalCost}</td>
+                    <td>
+                      
+                      {contract.status !== "Canceled" && contract.status !== "Completed" && (
+                        <button className='button btn-delete' onClick={() => handleStatusChange(contract.id, "cancel")}>Cancel</button>
+                      )}
+                      {contract.status !== "Canceled" && contract.status !== "Completed" && contract.status !=="Pending" && (
+                        <button className='button btn-detail' onClick={() => handleStatusChange(contract.id, "complete")}>Complete</button>
+                      )}
+                      {contract.status === "Pending" && (
+                        <button className='button btn-add' onClick={() => handleStatusChange(contract.id, "activate")}>Activate</button>
+                      )}
+
+                    </td>
                   </tr>
                 </tbody>
               );
@@ -228,11 +261,11 @@ function Contracts() {
             <div className='dropdown-item'onClick={e => {setIsAtiveS(!isActiveS); softHandle("id")}}>
                 {content[0]}
             </div>
-            <div className='dropdown-item' onClick={e => setIsAtiveS(!isActiveS)}>
+            <div className='dropdown-item' onClick={e => {setIsAtiveS(!isActiveS); softHandle("startDate")}}>
                 {content[1]}
                 
             </div>
-            <div className='dropdown-item'onClick={e => setIsAtiveS(!isActiveS)}>
+            <div className='dropdown-item'onClick={e => {setIsAtiveS(!isActiveS); softHandle("-startDate")}}>
                 {content[2]}
             </div>
         </div>}
@@ -268,7 +301,7 @@ function Contracts() {
         onChange={filterContractsByStatus}
         onReset={populateContractData}
       />
-      <DropdownSoft Type={'range'} Title={'Sắp xếp'} content={['Mới nhất', 'Từ A - Z', 'Từ Z -A']} onChange={filterContractsByStatus} />
+      <DropdownSoft Type={'range'} Title={'Sắp xếp'} content={['ID', 'Cũ nhất', 'Mới nhất']} onChange={filterContractsByStatus} />
       {contents}
     </div>
   );

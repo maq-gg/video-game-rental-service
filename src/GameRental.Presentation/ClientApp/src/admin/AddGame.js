@@ -189,7 +189,7 @@ const handleSubmit = async (event) => {
                 {media.map((mediaItem, index) => (
                     <div key={index} className='media-content-item'>
 
-                {mediaItem.type === "img" ? (
+                {mediaItem.type === "Image" ? (
                     <>
                     <img className="media-item" src={mediaItem.url} alt={mediaItem.caption} />
                     <button className='delete-media-btn' onClick={() => handleDeleteMedia()}>x</button>
