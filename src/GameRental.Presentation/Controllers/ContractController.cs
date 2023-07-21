@@ -196,6 +196,9 @@ public class ContractController : ControllerBase
 
                 return NotFound();
             }
+            // Contract can only be Completed if its status is "Active"
+            if (contractToMark.Status != "Active" && contractToMark.Status != "Overdue")
+                return NoContent();
 
             if (contractToMark.Status == "Completed" || contractToMark.Status == "Canceled")
                 return NoContent();
@@ -228,6 +231,11 @@ public class ContractController : ControllerBase
 
                 return NotFound();
             }
+
+            // Contract can only be Canceled if its status is Pending/Active/Overdue
+            if (contractToMark.Status != "Pending" && contractToMark.Status != "Active" && contractToMark.Status != "Overdue")
+                return NoContent();
+
             if (contractToMark.Status == "Completed" || contractToMark.Status == "Canceled")
                 return NoContent();
 
@@ -242,4 +250,44 @@ public class ContractController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
         }
     }
+
+    [HttpGet("contract/activate/{id}")]
+    public async Task<IActionResult> Activate(string id)
+    {
+        try
+        {
+            _logger.LogInformation("Received GET request to /contract/complete/{Id} endpoint", id);
+            
+            // Get contract to mark as Active 
+            var contractToMark = await _contractService.Get(id);
+
+            // Return if not found contract with id
+            if (contractToMark == null)
+            {
+                _logger.LogInformation("Contract with id: {Id} not found", id);
+
+                return NotFound();
+            }
+
+            // Contract can only be Activated if its status is "Pending"
+            if(contractToMark.Status != "Pending")
+                return NoContent();
+
+            // Do nothing if Contract is already Activated
+            if (contractToMark.Status == "Active")
+                return NoContent();
+
+            // Activate contract
+            await _contractService.Activate(id);
+
+            return NoContent();
+        }
+        catch(Exception ex)
+        {
+            _logger.LogError(ex, "An unexpected error occured while processing GET request to /contract/cancel/{Id} endpoint", id);
+            // ...
+            return StatusCode(StatusCodes.Status500InternalServerError, ex.Message);
+        }
+    }
+
 }

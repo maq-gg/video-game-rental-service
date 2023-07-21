@@ -19,6 +19,7 @@ namespace GameRental.Data.Models
 
         public Customer CustomerInfo { get; set; } = null!;
 
+        [Sieve(CanSort = true)]
         public DateOnly StartDate { get; set; }
 
         public DateOnly EndDate { get; set; }

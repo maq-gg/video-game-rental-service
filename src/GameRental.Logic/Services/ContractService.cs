@@ -143,18 +143,28 @@ namespace GameRental.Logic.Services
             int startDateDiff = currentDate.CompareTo(contract.StartDate);
             int endDateDiff = currentDate.CompareTo(contract.EndDate);
 
-            if (startDateDiff < 0)
+            if (startDateDiff <= 0)
             {
-                contract.Status = "Pending";
+                if (contract.Status != "Active" || startDateDiff != 0)
+                {
+                    contract.Status = "Pending";
+                }
             }
-            else if (startDateDiff >= 0 && endDateDiff <= 0)
+            else if (startDateDiff > 0 && endDateDiff <= 0)
             {
-                contract.Status = "Active";
+                if (contract.Status != "Active")
+                {
+                    contract.Status = "Canceled";
+                }
             }
             else if (endDateDiff > 0)
             {
-                contract.Status = "Overdue";
+                if (contract.Status != "Completed" || contract.Status != "Canceled")
+                {
+                    contract.Status = "Overdue";
+                }
             }
+
         }
 
         public async Task Complete(string id)
@@ -165,6 +175,11 @@ namespace GameRental.Logic.Services
         public async Task Cancel(string id)
         {
             await _contractRepository.CancelAsync(id);
+        }
+
+        public async Task Activate(string id)
+        {
+            await _contractRepository.ActivateAsync(id);
         }
     }
 }
