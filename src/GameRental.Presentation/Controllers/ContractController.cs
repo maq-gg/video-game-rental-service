@@ -232,8 +232,8 @@ public class ContractController : ControllerBase
                 return NotFound();
             }
 
-            // Contract can only be Canceled if its status is Pending or Active
-            if (contractToMark.Status != "Pending" && contractToMark.Status != "Active")
+            // Contract can only be Canceled if its status is Pending/Active/Overdue
+            if (contractToMark.Status != "Pending" && contractToMark.Status != "Active" && contractToMark.Status != "Overdue")
                 return NoContent();
 
             if (contractToMark.Status == "Completed" || contractToMark.Status == "Canceled")

@@ -159,7 +159,7 @@ namespace GameRental.Logic.Services
             }
             else if (endDateDiff > 0)
             {
-                if (contract.Status != "Completed")
+                if (contract.Status != "Completed" || contract.Status != "Canceled")
                 {
                     contract.Status = "Overdue";
                 }
