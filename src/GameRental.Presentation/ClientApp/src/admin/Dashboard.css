@@ -40,7 +40,7 @@
     background-color: #505050;
     border-radius: 10px;
     height: 200px;
-    margin: 6% 2% 0 2%;
+    margin: 8% 2% 0 2%;
     opacity: 90%;
     padding: 0px 30px;
   }
@@ -75,12 +75,12 @@
   .revenue > h6 {
     color: #d9d9d9;
     margin: 10px;
-    font-size: 20px;
+    font-size: 16px;
   }
   .revenue > p {
     color: #d9d9d9;
     margin: 10px;
-    font-size: 24px;
+    font-size: 20px;
   }
   
 

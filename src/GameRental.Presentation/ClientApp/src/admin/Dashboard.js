@@ -6,19 +6,44 @@ function Dashboard() {
   const [contracts, setContracts] = useState([]);
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const [gameTitles, setGameTitles] = useState({});
+  const [gamePlatforms, setGamePlatforms] = useState({})
   useEffect(() => {
     populateContractData();
     populateGameData();
+    fetchGameTitlesAndPlatforms();
   }, []);
 
+  useEffect(() => {
+    fetchGameTitlesAndPlatforms();
+  }, [contracts]);
+  async function fetchGameTitlesAndPlatforms() {
+    const newGameTitles = {};
+    const newGamePlatforms = {};
+  
+    for (const contract of contracts) {
+      const gameTitleAndPlatform = await getGameTitleAndPlatform(contract.gameId);
+      newGameTitles[contract.gameId] = gameTitleAndPlatform.title;
+      newGamePlatforms[contract.gameId] = gameTitleAndPlatform.platform;
+    }
+  
+    setGameTitles(newGameTitles);
+    setGamePlatforms(newGamePlatforms);
+  }
+  
+  async function getGameTitleAndPlatform(gameId) {
+    const response = await fetch(`/api/game/${gameId}`);
+    const game = await response.json();
+    return { title: game.title, platform: game.platform };
+  }
   function renderContractsTable(contracts) {
     return (
         <div className='tbd-wrapper'>
           <table className="tbd" aria-labelledby="tableLabel">
             <thead className='tbd-head'>
               <tr>
-                <th>ID</th>
+                <th>Game</th>
+                <th>Platform</th>
                 <th>Người thuê</th>
                 <th>Số điện thoại</th>
                 <th>Tình trạng</th>
@@ -28,7 +53,8 @@ function Dashboard() {
               return (
                 <tbody className='tbd-body'>
                   <tr key={contract.id}>
-                    <td>{contract.id}</td>
+                    <td>{gameTitles[contract.gameId]}</td>
+                    <td>{gamePlatforms[contract.gameId]}</td>
                     <td>{contract.customerInfo.name}</td>
                     <td>{contract.customerInfo.phoneNumber}</td>
                     <td>{contract.status}</td>
@@ -48,7 +74,7 @@ function Dashboard() {
       let hasMoreData = true;
   
       while (hasMoreData) {
-        const response = await fetch(`/api/contracts?page=${page}`);
+        const response = await fetch(`/api/contracts?sorts=-startDate&page=${page}`);
         const data = await response.json();
   
         if (data.length > 0) {
