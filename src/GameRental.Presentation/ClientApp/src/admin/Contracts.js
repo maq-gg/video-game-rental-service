@@ -264,7 +264,7 @@ function Contracts() {
       <DropdownCtr
         Type={'filter'}
         Title={'Lọc'}
-        content={['Completed', 'Cancled', 'Active', 'Pending', 'Expired']}
+        content={['Completed', 'Canceled', 'Active', 'Pending', 'Overdue']}
         onChange={filterContractsByStatus}
         onReset={populateContractData}
       />
