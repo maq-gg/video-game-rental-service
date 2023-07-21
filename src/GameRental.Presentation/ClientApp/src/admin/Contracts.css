@@ -213,7 +213,10 @@ tr:last-child td:last-child { border-bottom-right-radius: 10px; }
   display: block;
 }
 
-
+/* .status-btn-area {
+  display: flex;
+  justify-content: center;
+} */
 
 .filter-dropdown:hover .dropbtn {
   background-color: #606060;

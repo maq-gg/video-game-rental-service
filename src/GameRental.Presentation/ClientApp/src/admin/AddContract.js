@@ -38,7 +38,6 @@ const AddContract = () => {
     const response = await fetch(`api/games/search?searchTerm=${gameTitle}`);
     const data = await response.json();
     setMatchingGames(data);
-    console.log(data);
   };
 
   const handleGameSelect = (gameId, gameTitle) => {

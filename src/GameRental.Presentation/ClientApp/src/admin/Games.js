@@ -180,11 +180,11 @@ return (
           <div className='dropdown-item'onClick={e => {setIsAtiveS(!isActiveS); sortHandle("popularity")}}>
               {content[0]}
           </div>
-          <div className='dropdown-item' onClick={e => {setIsAtiveS(!isActiveS); sortHandle("releaseDate")}}>
+          <div className='dropdown-item' onClick={e => {setIsAtiveS(!isActiveS); sortHandle("-releaseDate")}}>
               {content[1]}
               
           </div>
-          <div className='dropdown-item'onClick={e => setIsAtiveS(!isActiveS)}>
+          <div className='dropdown-item'onClick={e => {setIsAtiveS(!isActiveS); sortHandle("releaseDate")}}>
               {content[2]}
           </div>
       </div>}
@@ -277,7 +277,7 @@ return (
       content={[['Platform','platform', 'PlayStation 5', 'PlayStation 4', 'Nintendo Switch'],
                 ['Genre', 'genre', 'Action', 'RPG', 'Adventure', 'Racing', 'Fighting'],
                 ['Publisher', 'publisher', 'CapCom', 'Ubisort', 'Nintendo']]} />
-      <DropdownSoft Type={'range'} Title={'Sắp xếp'} content={['Phổ biến', 'Ngày ra mắt', 'Từ Z -A']} />
+      <DropdownSoft Type={'range'} Title={'Sắp xếp'} content={['Phổ biến', 'Mới nhất', 'Cũ nhất']} />
       {contents}
     </div>
   );

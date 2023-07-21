@@ -9,12 +9,19 @@ function GameDetails() {
     navigate(`/edit/${Id}`);
   }
   const [gameData, setGameData] = useState(null);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const { gameId } = useParams();
   
   const handleImgClick = (event) => {
-    const thumbnailImg = document.querySelector('.thumbnail-img');
-    thumbnailImg.src = event.target.src;
+    if (event.target.tagName === 'VIDEO') {
+      setSelectedVideo(event.target.currentSrc);
+    } else {
+      setSelectedVideo(null);
+      const thumbnailImg = document.querySelector('.thumbnail-img');
+      thumbnailImg.src = event.target.src;
+    }
   }
+  
   useEffect(() => {
     // Fetch game data for the specific game using the gameId prop
     fetch(`api/game/${gameId}`)
@@ -52,24 +59,39 @@ function GameDetails() {
   return (
     <div className='detail-container'>
       <div className='image-detail'>
-        {gameData.media.length > 0 && (
-          <img
-            className='thumbnail-img'
-            alt={gameData.media[0].caption}
-            src={gameData.media[0].url}
-          />
+        {selectedVideo ? (
+          <video className='thumbnail-img' src={selectedVideo} autoPlay>
+          </video>
+        ) : (
+          gameData.media.length > 0 && (
+            <img
+              className='thumbnail-img'
+              alt={gameData.media[0].caption}
+              src={gameData.media[0].url}
+            />
+          )
         )}
 
         {/* Display media items */}
         <ul className='detail-img-wrapper'>
           {gameData.media.map((mediaItem, index) => (
-            <img
-              key={index}
-              onClick={handleImgClick}
-              className='detail-img'
-              alt={mediaItem.caption}
-              src={mediaItem.url}
-            />
+            mediaItem.type === 'Image' ? (
+              <img
+                key={index}
+                onClick={handleImgClick}
+                className='detail-img'
+                alt={mediaItem.caption}
+                src={mediaItem.url}
+              />
+            ) : (
+              <video
+                key={index}
+                onClick={handleImgClick}
+                className='detail-img'
+                src={mediaItem.url} 
+                autoPlay
+              />
+            )
           ))}
         </ul>
       </div>
