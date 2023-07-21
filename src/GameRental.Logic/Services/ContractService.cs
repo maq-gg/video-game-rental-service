@@ -145,7 +145,7 @@ namespace GameRental.Logic.Services
 
             if (startDateDiff <= 0)
             {
-                if ((contract.Status != "Active" && startDateDiff == 0) || contract.Status != "Canceled")
+                if (contract.Status != "Active" || startDateDiff != 0)
                 {
                     contract.Status = "Pending";
                 }
