@@ -154,7 +154,7 @@ const handleShipmentMethodChange = (event) => {
       endDate: endDate.toISOString().split('T')[0],
       rentalDuration,
       paymentMethod: event.target.paymentMethod.value,
-      shipmentMethod: event.target.shipmentMethod.value,
+      shipmentMethod: "",
       shippingFee: 5,
       lateFee: 0,
       totalCost,
@@ -309,7 +309,7 @@ const handleShipmentMethodChange = (event) => {
                         </label>
                     </div>
                 </div>      
-                <div className='mb-2'>
+                {/* <div className='mb-2'>
                     <label htmlFor='shipmentmethod' className='form-label'>
                             Phương thức nhận game
                     </label>
@@ -323,7 +323,7 @@ const handleShipmentMethodChange = (event) => {
                         <span></span>
                         </label>
                     </div>
-                </div>     
+                </div>      */}
       
                 <div className='mb-2 status-display'>
                         <label htmlFor='status' className='form-label'>

@@ -78,7 +78,7 @@ const AddContract = () => {
       endDate: endDate.toISOString().split('T')[0],
       rentalDuration,
       paymentMethod: event.target.paymentMethod.value,
-      shipmentMethod: event.target.shipmentMethod.value,
+      shipmentMethod: "",
       shippingFee: 5,
       lateFee: 0,
       totalCost,
@@ -228,7 +228,7 @@ const AddContract = () => {
                         </label>
                     </div>
                 </div>      
-                <div className='mb-2'>
+                {/* <div className='mb-2'>
                     <label htmlFor='shipmentmethod' className='form-label'>
                             Phương thức nhận game
                     </label>
@@ -242,7 +242,7 @@ const AddContract = () => {
                         <span></span>
                         </label>
                     </div>
-                </div>           
+                </div>            */}
                 <button type="submit" className='submit-btn'>
                 Thêm
                 </button>
