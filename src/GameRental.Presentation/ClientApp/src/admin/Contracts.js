@@ -129,6 +129,7 @@ function Contracts() {
         }
         return contract;
       }));
+      window.location.reload();
     } else {
       // Handle failed status update
     }
