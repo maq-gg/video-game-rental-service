@@ -49,7 +49,7 @@ function Dashboard() {
                 <th>Tình trạng</th>
               </tr>
             </thead>
-            {contracts.map(contract => {
+            {contracts.slice(0, 10).map(contract => {
               return (
                 <tbody className='tbd-body'>
                   <tr key={contract.id}>
