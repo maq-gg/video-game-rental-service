@@ -3,6 +3,15 @@
 
 Lớp: SE104.N27.CLC
 
+## Công nghệ
+- Backend
+  - C#
+  - ASP.NET Core
+  - MongoDB
+- Frontend
+  - React
+  - Nodejs
+
 ## Thành viên nhóm
 | # | Họ tên | MSSV | Github |
 | - | ------ | ---- | ------ |
