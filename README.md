@@ -18,4 +18,4 @@ Lớp: SE104.N27.CLC
 | 1 | Mai Anh Quân | 21520411 | https://github.com/maqnitude |
 | 2 | Đỗ Thành Nhân | 21522400 | https://github.com/ThanhNhan411 |
 | 3 | Trần Thanh Sơn | 21522558 | https://github.com/SonThanh791 |
-| 4 | Lê Văn Quân | 21522491 | https://github.com/levanquan21522491 |
+| 4 | Lê Văn Quân | 21522491 | https://github.com/lvquan2003 |
